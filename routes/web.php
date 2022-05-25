@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
+Route::get('/clear', function (){
+    return \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+});
+
 Route::get('/', [\App\Http\Controllers\SiteController::class, 'home'])->name('home');
 
 Auth::routes();
