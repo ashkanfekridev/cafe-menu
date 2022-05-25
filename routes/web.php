@@ -12,5 +12,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/', [\App\Http\Controllers\SiteController::class, 'index'])->name('index');
+Route::get('/', [\App\Http\Controllers\SiteController::class, 'home'])->name('home');
+
+Auth::routes();
+
+Route::group([
+    "as" => 'admin.',
+    'prefix' => 'admin',
+    'middleware'=>['auth', 'web']
+], function () {
+    Route::get('/', \App\Http\Controllers\Admin\HomeController::class)->name('home');
+    Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
+//    Route::post('store', [\App\Http\Controllers\Admin\ImageController::class, 'store'])->name('image.upload');
+});
+
+

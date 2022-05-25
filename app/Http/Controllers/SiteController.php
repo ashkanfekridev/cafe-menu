@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
-    public function index()
+    public function home()
     {
         $categoryWithProduct = Category::with('products')->get();
 
-        return view('index', ['categoryWithProduct' => $categoryWithProduct]);
+        return view('home', ['categoryWithProduct' => $categoryWithProduct]);
     }
 }

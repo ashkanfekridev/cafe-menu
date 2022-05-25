@@ -7,14 +7,16 @@
     <title>منوی کافه</title>
     <link rel="stylesheet" href="css/fontiran.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/frontend.css">
 </head>
 <body>
 <div id="app">
     <header id="header">
         <div class="container">
             <section id="top-header" class="section">
-                <img src="images/logo.svg" width="150px" alt="logo">
+                <a href="{{route('home')}}">
+                    <img src="images/logo.svg" width="150px" alt="logo">
+                </a>
             </section>
             <nav id="nav-header">
                 <ul class="nav-bar">
