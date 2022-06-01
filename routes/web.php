@@ -18,6 +18,10 @@ Route::get('/clear', function (){
     return \Illuminate\Support\Facades\Artisan::call('optimize:clear');
 });
 
+Route::get('/link', function (){
+    return \Illuminate\Support\Facades\Artisan::call('storage:link');
+});
+
 Route::get('/', [\App\Http\Controllers\SiteController::class, 'home'])->name('home');
 
 Route::group([
