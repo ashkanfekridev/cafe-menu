@@ -5,27 +5,62 @@
         <div class="row">
             <div class="col-4">
                 <div class="card">
-                    <div class="card-header">
-                        <p>دسته بندی ها</p>
-                    </div>
                     <div class="card-body">
-                        <form action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data" >
-                            @csrf
-                            <div class="form-group">
-                                <label for="title" class="form-label">عنوان</label>
-                                <input type="text" name="title" id="title" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="image" class="form-label">تصویر</label>
-                                <input type="file" name="image" id="image" class="form-control">
-                            </div>
-                            <div class="form-group pt-3">
-                                <button type="submit" class="btn btn-primary">ذخیر دسته بندی</button>
-                            </div>
-                        </form>
+                        <ul>
+                            <li><a href="{{route('admin.category.index')}}">دسته بندی</a></li>
+                            <li><a href="{{route('admin.product.index')}}">محصولات</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
+
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <p>{{$productAndCategoryCount->categoryCount}}</p>
+                                        <p>تعداد دسته بندی ها</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <p>{{$productAndCategoryCount->productCount}}</p>
+                                        <p>تعداد محصولات</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <tr>
+                                                <th>id</th>
+                                                <th>عنوان</th>
+                                                <th>قیمت</th>
+                                            </tr>
+                                            @foreach($userWithCategoriesAndProduct->products as $product)
+                                                <tr>
+                                                    <th>{{$product->id}}</th>
+                                                    <th>{{$product->title}}</th>
+                                                    <th>{{number_format($product->price)}}</th>
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection
