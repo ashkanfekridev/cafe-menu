@@ -45,9 +45,9 @@
 
                             <div class="product-list_item">
                                 @if(isset($product->image_id))
-                                    <img src="{{$product->image->link}}" class="product-list_item-image" alt="product">
+                                    <img src="{{asset($product->image->link)}}" class="product-list_item-image" alt="product">
                                 @else
-                                    <img src="images/5.jpg" class="product-list_item-image" alt="product">
+                                    <img src="{{asset("images/5.jpg")}}" class="product-list_item-image" alt="product">
                                 @endif
                                 <div class="product-list_item-content">
                                     <p class="product-list_item-content_name text-black mt:8px">{{$product->title}}</p>
