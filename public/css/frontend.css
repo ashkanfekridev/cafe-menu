@@ -1,59 +1,62 @@
-:root{
+:root {
     --body-background: #000;
     --header-background: #fefefe;
     --link-color: #fff;
 }
 
-*,html,body{
+*, html, body {
     padding: 0;
     margin: 0;
     position: relative;
     box-sizing: border-box;
 }
 
-body{
+body {
     direction: rtl;
     background-color: var(--body-background);
     scroll-behavior: smooth;
 }
 
-a{
+a {
     text-decoration: none;
     color: var(--link-color);
 }
-li{
+
+li {
     list-style: none;
 }
 
-h2{
+h2 {
     color: #fff;
 }
 
-.container{
+.container {
     padding-left: 15px;
     padding-right: 15px;
 }
 
-.section{
+.section {
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
-.p-15px{
+.p-15px {
     padding: 15px;
 }
-.mt\:8px{
+
+.mt\:8px {
     margin-top: 8px;
 }
 
-.flex{
+.flex {
     display: flex;
 }
-.justify-content\:\space-between{
+
+.justify-content\:\space-between {
     justify-content: space-between;
 }
 
-.align-items\:center{
+.align-items\:center {
     align-items: center;
 }
 
@@ -64,19 +67,19 @@ h2{
 *****/
 
 
-#top-header{
+#top-header {
     text-align: center;
     border-bottom: 1px solid #eee;
 }
 
 
-.nav-bar{
+.nav-bar {
     display: flex;
     overflow-y: scroll;
     margin-top: 15px;
 }
 
-.nav-item{
+.nav-item {
     border: 1px solid #eee;
     border-radius: 8px;
     text-align: center;
@@ -86,21 +89,17 @@ h2{
 }
 
 
-
-
-
-.categorry-title{
+.categorry-title {
     margin-top: 15px;
     margin-bottom: 15px;
 }
-
 
 
 /*********
 * poroduct list of product iteme
 *******/
 
-.product-list_item{
+.product-list_item {
     padding: 8px 15px;
     border: 1px solid #fff;
     border-radius: 8px;
@@ -110,28 +109,29 @@ h2{
     margin-bottom: 15px;
 }
 
-.product-list_item-image{
+.product-list_item-image {
     border-radius: 4px;
     max-height: 72px;
 }
 
-.product-list_item-content{
+.product-list_item-content {
     padding-right: 15px;
     width: auto;
     flex: 1;
 }
 
-.product-list_item-content_description{
+.product-list_item-content_description {
     margin-top: 8px;
     margin-bottom: 8px;
     font-size: 16px;
 }
 
-.product-list_item-content_add_to_order{
+.product-list_item-content_add_to_order {
     padding: 8px;
-    border:1px solid #fff;
+    border: 1px solid #fff;
     border-radius: 4px;
     visibility: hidden;
 }
+
 
 
