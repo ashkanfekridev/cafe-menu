@@ -20,8 +20,6 @@ Route::get('/clear', function (){
 
 Route::get('/', [\App\Http\Controllers\SiteController::class, 'home'])->name('home');
 
-Auth::routes();
-
 Route::group([
     "as" => 'admin.',
     'prefix' => 'admin',
@@ -29,7 +27,6 @@ Route::group([
 ], function () {
     Route::get('/', \App\Http\Controllers\Admin\HomeController::class)->name('home');
     Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
-//    Route::post('store', [\App\Http\Controllers\Admin\ImageController::class, 'store'])->name('image.upload');
+    Route::resource('product', \App\Http\Controllers\Admin\ProductController::class);
 });
-
 
