@@ -5,41 +5,44 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Image;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use function PHPUnit\Framework\isNull;
 
 class CategoryController extends Controller
 {
 
     public function index()
     {
-        //
+
+        $categories = Category::all()->where('user_id', 1);
+
+
+        return view('admin.category.index', [
+            'categories' => $categories
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'title' => 'required|string|min:2|max:100'
-        ]);
-
-        $path = $request->file('image')->store('images', 'upload');
-//        return  $path;
-        return storage_path($path);
-
-        $image = $this->saveImage($request);
+        $image = Image::create(
+            [
+                'link' => $request->file('image')->store('upload'),
+                'user_id' => Auth::id()
+            ]);
 
         $category = Category::create([
             'title' => $request->title,
@@ -47,7 +50,14 @@ class CategoryController extends Controller
             'image_id' => $image->id
         ]);
 
-        return $category;
+        $image = Image::create(
+            [
+                'link' => $request->file('image')->store('upload'),
+                'user_id' => Auth::id()
+            ]);
+
+        return redirect()->route('admin.category.index')->with(['success' => 'محصول مورد نظر با موفقیت ثبت شد.']);
+
 
     }
 
@@ -80,11 +90,14 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        return view('admin.category.edit', [
+            'category' => $category
+        ]);
     }
 
     /**
@@ -92,11 +105,31 @@ class CategoryController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
-     */
+     **/
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        if ($request->image_loaded == true && !$request->image == null) {
+            $image_id = Image::create(
+                [
+                    'link' => $request->file('image')->store('upload'),
+                    'user_id' => Auth::id()
+                ]);
+            $image_id = $image_id->id;
+        } else {
+            $image_id = $category->image_id;
+        }
+        $category->title = $request->title;
+        $category->user_id = Auth::id();
+
+        $category->image_id = $image_id;
+
+        $category->save();
+
+
+        return redirect()->route('admin.category.index')->with(['message' => 'محصول مورد نظر با موفقیت ثبت شد.']);
+
     }
 
     /**
@@ -107,6 +140,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect()->back();
     }
 }
