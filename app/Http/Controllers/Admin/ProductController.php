@@ -20,12 +20,17 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
         $productAndCategoryCount = DB::select("select
-        (select count(*) from categories WHERE user_id = ?) as categoryCount,
-        (select count(*) from products WHERE user_id=?) as productCount", [1, 1]
+            (select count(*) from categories WHERE user_id = ?) as categoryCount,
+            (select count(*) from products WHERE user_id=?) as productCount",
+            [$user->id, $user->id]
         );
 
-        $userWithCategoriesAndProduct = User::with(['categories', 'products'])->first();
+        $userWithCategoriesAndProduct = new \stdClass();
+
+        $userWithCategoriesAndProduct->products = User::find($user->id)->products;
+        $userWithCategoriesAndProduct->categories = User::find($user->id)->categories;
 
         $productAndCategoryCount = $productAndCategoryCount[0];
 
@@ -42,8 +47,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all()->where('user_id', '=', 1);
-
+        $categories = Category::all()->where('user_id', '=', Auth::id());
         return view('admin.product.create', ['categories' => $categories]);
     }
 
@@ -55,12 +59,16 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        $image = Image::create(
-            [
-                'link' => $request->file('image')->store('upload'),
-                'user_id' => Auth::id()
-            ]);
-
+        if (isset($request->image)) {
+            $image = Image::create(
+                [
+                    'link' => $request->file('image')->store('upload'),
+                    'user_id' => Auth::id()
+                ]);
+        } else {
+            $image = new \stdClass();
+            $image->id = 1;
+        }
 
         $product = Product::create([
             'user_id' => Auth::id(),
@@ -92,7 +100,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        $categories = Category::all()->where('user_id', '=', 1);
+        $categories = Category::all()->where('user_id', '=', Auth::id());
 
         return view('admin.product.edit', [
             'product' => $product,
