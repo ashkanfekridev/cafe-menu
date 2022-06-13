@@ -66,7 +66,7 @@
                                                         @if(isset($product->image_id))
                                                             <img src="{{asset($product->image->link)}}" width="60px" style="max-height: 60px" class="rounded rounded-2" alt="...">
                                                         @else
-                                                            <img src="/images/5.jpg" width="60px" class="rounded rounded-2 list-item-image"  alt="...">
+                                                            <img src="{{asset("/images/5.jpg") }}" width="60px" class="rounded rounded-2 list-item-image"  alt="...">
 
                                                         @endif
                                                     </th>
