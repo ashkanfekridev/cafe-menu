@@ -15,7 +15,7 @@
         <div class="container">
             <section id="top-header" class="section">
                 <a href="{{route('home')}}">
-                    <img src="images/logo.svg" width="150px" alt="logo">
+                    <img src="images/arena file cnc - pdf 2.png" width="150px" alt="logo" style="filter: contrast(0)">
                 </a>
             </section>
             <nav id="nav-header">

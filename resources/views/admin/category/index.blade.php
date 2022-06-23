@@ -22,7 +22,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body text-center">
-                                        <a href="{{route('admin.category.create')}}" class="btn btn-info">ایجاد محصول
+                                        <a href="{{route('admin.category.create')}}" class="btn btn-info">ایجاد دسته
                                             جدید</a>
 
                                     </div>

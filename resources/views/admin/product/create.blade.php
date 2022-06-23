@@ -39,7 +39,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="description" class="form-label">عنوان</label>
+                                <label for="description" class="form-label">توضیحات</label>
                                 <textarea  name="description" id="description" class="form-control"></textarea>
                             </div>
 

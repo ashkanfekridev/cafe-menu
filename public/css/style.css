@@ -234,3 +234,7 @@ blockquote {
 .list-item-image{
     background: #000;
 }
+
+.offset-2{
+    margin-right: 16.66666667%;
+}

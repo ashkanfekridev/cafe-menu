@@ -128,7 +128,7 @@ class CategoryController extends Controller
         $category->save();
 
 
-        return redirect()->route('admin.category.index')->with(['message' => 'محصول مورد نظر با موفقیت ثبت شد.']);
+        return redirect()->route('admin.category.index')->with(['message' => 'دسته بندی مورد نظر با موفقیت ثبت شد.']);
 
     }
 
