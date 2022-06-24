@@ -1,33 +1,40 @@
 <?php
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// Authentication
 Auth::routes();
-
-Route::get('/clear', function (){
+//Developer
+Route::get('/clear', function () {
     return \Illuminate\Support\Facades\Artisan::call('optimize:clear');
 });
 
-Route::get('/link', function (){
+Route::get('/link', function () {
     return \Illuminate\Support\Facades\Artisan::call('storage:link');
 });
 
+
+// Site
 Route::get('/', [\App\Http\Controllers\SiteController::class, 'home'])->name('home');
 
+// Dashboard
+Route::group([
+    'as' => "dashboard",
+    'prefix' => 'dashboard',
+    'middleware' => ['auth', 'web']
+], function () {
+
+    Route::get('/', [\App\Http\Controllers\Dashboard\HomeController::class, 'index'])->name('home');
+    Route::post('reset', [\App\Http\Controllers\Dashboard\HomeController::class, 'resetPassword'])->name('reset');
+
+});
+
+//Admin
 Route::group([
     "as" => 'admin.',
     'prefix' => 'admin',
-    'middleware'=>['auth', 'web']
+    'middleware' => ['auth', 'web']
 ], function () {
     Route::get('/', \App\Http\Controllers\Admin\HomeController::class)->name('home');
     Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
