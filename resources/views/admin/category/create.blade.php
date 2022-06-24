@@ -17,7 +17,7 @@
 
                             <div class="form-group">
                                 <label for="image" class="form-label">تصویر</label>
-                                <input type="file" name="image" id="image" class="form-control">
+                                <input type="file" name="image" id="image" class="form-control"  accept="image/png, image/gif, image/jpeg" >
                             </div>
 
                             <div class="form-group pt-3">

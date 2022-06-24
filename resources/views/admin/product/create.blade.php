@@ -37,7 +37,7 @@
 
 
                             <div class="form-group">
-                                <label for="image" class="form-label">تصویر</label>
+                                <label for="image" class="form-label" accept="image/png, image/gif, image/jpeg" >تصویر</label>
                                 <input type="file" name="image" id="image" class="form-control">
                             </div>
 

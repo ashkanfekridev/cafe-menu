@@ -40,7 +40,7 @@
 
                             <div class="form-group">
                                 <label for="image" class="form-label">تصویر</label>
-                                <input type="file" name="image" id="image" class="form-control" onchange="
+                                <input type="file" name="image" id="image" class="form-control"  accept="image/png, image/gif, image/jpeg" onchange="
                                   document.getElementById('image_loaded').value = true;
                                 ">
                             </div>
