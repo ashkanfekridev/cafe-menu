@@ -3,18 +3,10 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <ul>
-                            <li><a href="{{route('admin.category.index')}}">دسته بندی</a></li>
-                            <li><a href="{{route('admin.product.index')}}">محصولات</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            @include('layouts.admin-menu')
 
-            <div class="col-8">
+
+            <div class="col-12 col-md-8 mb-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
