@@ -14,6 +14,10 @@ class SiteController extends Controller
         $categoryWithProduct = Category::where('user_id', config('app_user_id'))
             ->with('products')
             ->get();
-        return view('home', ['categoryWithProduct' => $categoryWithProduct]);
+        $user = User::find(config('app_user_id'));
+        return view('home', [
+            'user'=> $user,
+            'categoryWithProduct' => $categoryWithProduct
+        ]);
     }
 }

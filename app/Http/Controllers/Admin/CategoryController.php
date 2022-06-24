@@ -38,11 +38,18 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $image = Image::create(
-            [
-                'link' => $request->file('image')->store('upload'),
-                'user_id' => Auth::id()
-            ]);
+        if (isset($request->image)) {
+            $image = Image::create(
+                [
+                    'link' => $request->file('image')->store('upload'),
+                    'user_id' => Auth::id()
+                ]);
+        } else {
+            $image = new \stdClass();
+            $image->id = 1;
+        }
+
+
 
         $category = Category::create([
             'title' => $request->title,
@@ -56,7 +63,7 @@ class CategoryController extends Controller
                 'user_id' => Auth::id()
             ]);
 
-        return redirect()->route('admin.category.index')->with(['success' => 'محصول مورد نظر با موفقیت ثبت شد.']);
+        return redirect()->route('admin.category.index')->with(['success' => 'دسته بندی مورد نظر با موفقیت ثبت شد.']);
 
 
     }
@@ -128,7 +135,7 @@ class CategoryController extends Controller
         $category->save();
 
 
-        return redirect()->route('admin.category.index')->with(['message' => 'دسته بندی مورد نظر با موفقیت ثبت شد.']);
+        return redirect()->route('admin.category.index')->with(['message' => 'دسته بندی مورد نظر با ویرایش ثبت شد.']);
 
     }
 
