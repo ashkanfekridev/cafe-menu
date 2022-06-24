@@ -26,6 +26,14 @@ class Category extends Model
         return $this->hasOne(Image::class, 'id', 'image_id');
     }
 
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+
+
     public function products(){
         return $this->hasMany(Product::class, 'category_id', 'id');
     }

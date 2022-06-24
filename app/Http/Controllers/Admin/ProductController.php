@@ -139,7 +139,9 @@ class ProductController extends Controller
         $product->save();
 
 
-        return redirect()->route('admin.product.index')->with(['message' => 'محصول مورد نظر با موفقیت ثبت شد.']);
+        return redirect()
+            ->route('admin.product.index')
+            ->with(['message' => 'محصول مورد نظر با موفقیت ویرایش شد.']);
     }
 
     /**
