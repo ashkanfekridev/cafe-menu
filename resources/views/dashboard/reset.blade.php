@@ -7,6 +7,7 @@
                 @include('layouts.flash-message')
                 <div class="card">
                     <div class="card-body">
+                        <a href="{{url()->previous()}}" class="btn btn-outline-primary mb-3">بازگشت به صفحه قبل</a>
                         <form action="{{action([\App\Http\Controllers\Dashboard\HomeController::class, 'resetPassword'])}}" method="post">
                             @csrf
                             <div class="row mb-3">

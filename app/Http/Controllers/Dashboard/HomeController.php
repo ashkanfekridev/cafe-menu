@@ -3,18 +3,39 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
-    function index()
+    function reset()
     {
         $user = Auth::user();
-        return view('dashboard.index', [
+        return view('dashboard.reset', [
             'user' => $user
         ]);
+    }
+
+    function edit()
+    {
+        $user = Auth::user();
+        return view('dashboard.edit', [
+            'user' => $user
+        ]);
+    }
+
+    function updateUserOptions()
+    {
+        $user = Auth::user();
+
+        $user->description = request('description');
+        $user->instagram = request('instagram');
+        $user->phone = request('phone');
+        $user->name = request('name');
+
+        if ($user->save())
+            return redirect()->route('admin.home')->with('info', "اطلاعات شما با موفقیت تعویض شد.");
+        return back();
     }
 
     function resetPassword()

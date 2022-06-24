@@ -20,13 +20,16 @@ Route::get('/', [\App\Http\Controllers\SiteController::class, 'home'])->name('ho
 
 // Dashboard
 Route::group([
-    'as' => "dashboard",
+    'as' => "dashboard.",
     'prefix' => 'dashboard',
     'middleware' => ['auth', 'web']
 ], function () {
 
-    Route::get('/', [\App\Http\Controllers\Dashboard\HomeController::class, 'index'])->name('home');
-    Route::post('reset', [\App\Http\Controllers\Dashboard\HomeController::class, 'resetPassword'])->name('reset');
+    Route::get('/reset', [\App\Http\Controllers\Dashboard\HomeController::class, 'reset'])->name('reset');
+    Route::post('reset-password', [\App\Http\Controllers\Dashboard\HomeController::class, 'resetPassword'])->name('reset-password');
+
+    Route::get('/edit', [\App\Http\Controllers\Dashboard\HomeController::class, 'edit'])->name('edit');
+    Route::post('edit-user-options', [\App\Http\Controllers\Dashboard\HomeController::class, 'updateUserOptions'])->name('updateUserOptions');
 
 });
 
