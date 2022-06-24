@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/fontiran.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/frontend.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 <body>
 <div id="app">
@@ -28,7 +29,11 @@
                 {{--                user instagram link--}}
 
                 @if(!is_null($user->instagram))
-                    <a href="https://instagram.com/{{$user->instagram}}" class="btn" target="_blank">پیج اینستاگرام کافه</a>
+
+                    <a href="https://instagram.com/{{$user->instagram}}" class="btn" target="_blank">
+                        <i class="bi bi-instagram"></i>
+                         پیج اینستاگرام کافه
+                    </a>
                 @endif
                 {{--                user phone number--}}
 
