@@ -64,7 +64,15 @@
                                                     </th>
                                                     <th>{{$product->title}}</th>
                                                     <th>{{number_format($product->price)}}</th>
-                                                    <th>{{$product->category->title}}</th>
+
+                                                    <th>
+                                                        @if(isset($product->category->title))
+                                                            {{$product->category->title}}
+                                                        @else
+                                                            دسته بندی وجود ندارد
+                                                        @endif
+                                                    </th>
+
                                                     <th>
                                                         <a href="{{route('admin.product.edit',  $product->id)}}" class="btn btn-info">ویرایش محصول</a>
                                                     </th>
